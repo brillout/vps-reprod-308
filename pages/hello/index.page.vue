@@ -4,6 +4,7 @@
     Hi <b>{{ name }}</b
     >.
   </p>
+  <p>{{ pageContext.pageProps.name }}</p>
   <ul>
     <li>
       <a href="/hello/eli">/hello/eli</a>
@@ -19,5 +20,34 @@
 </template>
 
 <script lang="ts" setup>
-defineProps(['name'])
+import {
+  onActivated,
+  onRenderTracked,
+  onRenderTriggered,
+  onUpdated,
+  onServerPrefetch,
+} from "vue";
+import { usePageContext } from "../../renderer/usePageContext";
+const props = defineProps(["name"]);
+const pageContext = usePageContext();
+
+onUpdated(() => {
+  console.info("onUpdated", props, pageContext);
+});
+
+onActivated(() => {
+  console.info("onActivated", props, pageContext);
+});
+
+onRenderTracked(() => {
+  console.info("onRenderTracked", props, pageContext);
+});
+
+onRenderTriggered(() => {
+  console.info("onRenderTriggered", props, pageContext);
+});
+
+onServerPrefetch(() => {
+  console.info("onServerPrefetch", props, pageContext);
+});
 </script>

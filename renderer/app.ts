@@ -23,6 +23,7 @@ function createApp(pageContext: PageContext) {
         {},
         {
           default: () => {
+            console.log('pageProps [render()]: ', this.pageProps)
             return h(this.Page, this.pageProps)
           },
         },
@@ -38,7 +39,7 @@ function createApp(pageContext: PageContext) {
       Object.assign(pageContextReactive, pageContext)
       rootComponent.Page = markRaw(pageContext.Page)
       rootComponent.pageProps = markRaw(pageContext.pageProps || {})
-      console.log('pageProps: ', rootComponent.pageProps)
+      console.log('pageProps [changePage()]: ', rootComponent.pageProps)
     },
   })
 

@@ -38,6 +38,7 @@ function createApp(pageContext: PageContext) {
       Object.assign(pageContextReactive, pageContext)
       rootComponent.Page = markRaw(pageContext.Page)
       rootComponent.pageProps = markRaw(pageContext.pageProps || {})
+      console.log('pageProps: ', rootComponent.pageProps)
     },
   })
 
